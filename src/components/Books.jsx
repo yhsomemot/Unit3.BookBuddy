@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function Books({ setToken }) {
 
-    const [books, setBooks] = useState("");
+    const [books, setBooks] = useState([]);
 
     useEffect(() => {
         async function fetchBooks() {
@@ -17,7 +17,8 @@ export default function Books({ setToken }) {
                     "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books"
                 );
                 const result = await response.json();
-                setBooks(result);
+                console.log(result)
+                setBooks(result.books);
             } catch (error) {
                 console.error(error);
             }
@@ -28,13 +29,13 @@ export default function Books({ setToken }) {
     return (
         <>
             <h1>Books</h1>
-            {/* <ul>
+            <ul>
                 {books.map((book) => {
-                    return <li key={book.id} book={book} setToken = {setToken}>
+                    return <li key={book.id}>
                         {book.title}
                         </li>;
                 })}
-            </ul> */}
+            </ul>
         </>
     )
 }
