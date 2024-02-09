@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import bookLogo from './assets/books.png'
 import Books from './components/Books'
+import Login from './components/Login'
 
 function App() {
   const [token, setToken] = useState(null)
@@ -15,7 +16,8 @@ function App() {
 
       <p>Don't forget to set up React Router to navigate between the different views of your single page application!</p>
 
-      <Books setToken={setToken} token = {token} />
+      <Login token={token} setToken={setToken} />
+      <Books token={token} setToken={setToken} />
     </>
   )
 }
