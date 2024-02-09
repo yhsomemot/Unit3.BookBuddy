@@ -6,6 +6,7 @@ to the SingleBook component and view its details. */
 
 import { useEffect, useState } from "react";
 
+
 export default function Books({ setToken }) {
 
     const [books, setBooks] = useState([]);
@@ -32,7 +33,9 @@ export default function Books({ setToken }) {
             <ul>
                 {books.map((book) => {
                     return <li key={book.id}>
-                        {book.title}
+                        <img className="coverImage" src={book.coverimage} />
+                        <br />
+                        <button>Sample Text</button>
                         </li>;
                 })}
             </ul>
