@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function Login({ setToken }) {
+export function Login({ setToken }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");

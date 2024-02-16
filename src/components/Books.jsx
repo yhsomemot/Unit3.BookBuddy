@@ -7,7 +7,7 @@ to the SingleBook component and view its details. */
 import { useEffect, useState } from "react";
 
 
-export default function Books({ setToken }) {
+export function Books({ setToken }) {
 
     const [books, setBooks] = useState([]);
 
