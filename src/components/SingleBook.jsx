@@ -7,19 +7,31 @@ import { useEffect, useState } from "react"
 export default function SingleBook() {
     const [book, setBooks] = useState(null);
 
-    // useEffect (() =>{
-    //     async function fetchSingleBook() {
-    //         try {
-    //             const response = await fetch(
-    //                 `https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/${}`
-    //             )
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     }
-    // })
-    
+    useEffect (() =>{
+        async function fetchSingleBook() {
+            try {
+                const response = await fetch(
+                    "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/:bookId"
+                    const result = await response.json();
+                    return result.book
+                )
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    })
+
     return (
         <h1>Single book</h1>
     );
 }
+
+// //export async function getPlayer(playerId) {
+//     try {
+//         const response = await fetch(`${API_URL}/players/${playerId}`);
+//         const result = await response.json();
+//         return result.data.player;
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
