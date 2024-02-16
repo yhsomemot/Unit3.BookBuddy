@@ -1,17 +1,18 @@
 /* TODO - add your code to create a functional React component that renders a login form */
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Login({ setToken }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [successMessage, setSuccessMessage] = useState("")
-    
+
     async function handleSubmit(e) {
         e.preventDefault();
         try {
-            const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/login",{
+            const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/login", {
                 method: "POST",
                 body: JSON.stringify({ username: username, password: password })
             });
@@ -40,6 +41,13 @@ export function Login({ setToken }) {
                 <br />
                 <button>Submit</button>
             </form>
+            
+            <div>
+                <Link to="/register" className="nav">
+                    Register
+                </Link>
+            </div>
+
         </>
 
     )

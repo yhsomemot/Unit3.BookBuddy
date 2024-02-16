@@ -4,7 +4,7 @@ for example 'Login' should be available if someone has not logged in yet. */
 import { Link } from "react-router-dom";
 
 
-export function Navigations() {
+export function Navigations () {
 
     return (
         <div>

@@ -18,7 +18,6 @@ export function Books({ setToken }) {
                     "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books"
                 );
                 const result = await response.json();
-                console.log(result)
                 setBooks(result.books);
             } catch (error) {
                 console.error(error);
