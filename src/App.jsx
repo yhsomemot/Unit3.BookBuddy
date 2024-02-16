@@ -5,6 +5,7 @@ import { Books } from './components/Books'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
 import { Navigations } from './components/Navigations'
+import SingleBook from './components/SingleBook'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/books" element={<Books />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/books/:bookId" element={<SingleBook />} />
           </Routes>
         </div>
       </div>

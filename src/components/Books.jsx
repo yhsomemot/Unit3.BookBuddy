@@ -5,6 +5,7 @@ Users should be able to click on an individual book to navigate
 to the SingleBook component and view its details. */
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 export function Books({ setToken }) {
@@ -29,13 +30,15 @@ export function Books({ setToken }) {
     return (
         <>
             <h1>Books</h1>
-            <ul>
+            <ul id="books">
                 {books.map((book) => {
-                    return <li key={book.id}>
-                        <img className="coverImage" src={book.coverimage} />
+                    return <li id="bookImg" key={book.id}>
+                        <Link to="/books/:bookId">
+                            <img className="coverImage" src={book.coverimage} />
+                        </Link>
+                        
                         <br />
-                        <button>Sample Text</button>
-                        </li>;
+                    </li>;
                 })}
             </ul>
         </>

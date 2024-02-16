@@ -13,6 +13,18 @@ body {
 /* Add your own custom styles here */
 
 .coverImage {
-  width: auto;
-  height: 10%;
+  width: 50%;
+  height: auto;
+}
+
+#books {
+  display: grid;
+  grid-template-columns: repeat(5, calc(20% - 0px));
+  justify-content: center;
+  list-style: none;
+}
+
+#bookImg {
+  display: flex;
+  flex-direction: column;
 }
