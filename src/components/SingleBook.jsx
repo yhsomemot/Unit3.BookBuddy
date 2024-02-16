@@ -4,34 +4,28 @@ You may consider conditionally rendering a 'Checkout' button for logged in users
 
 import { useEffect, useState } from "react"
 
-export default function SingleBook() {
-    const [book, setBooks] = useState(null);
+export async function SingleBook() {
+    const [book, setBook] = useState({});
 
-    useEffect (() =>{
-        async function fetchSingleBook() {
+    useEffect(() => {
+        async function fetchSingleBook(bookId) {
             try {
                 const response = await fetch(
-                    "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/:bookId"
-                    const result = await response.json();
-                    return result.book
-                )
+                    `https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/${bookId}`);
+                const result = await response.json();
+                setBook(result.book);
+                console.log(result)
             } catch (error) {
                 console.error(error);
             }
         }
+        fetchSingleBook();
     })
 
     return (
-        <h1>Single book</h1>
+        <>
+            <h1>Single book</h1>
+            {/* <h2>{book.title}</h2> */}
+        </>
     );
 }
-
-// //export async function getPlayer(playerId) {
-//     try {
-//         const response = await fetch(`${API_URL}/players/${playerId}`);
-//         const result = await response.json();
-//         return result.data.player;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }

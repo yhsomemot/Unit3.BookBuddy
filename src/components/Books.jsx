@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
-export function Books({ setToken }) {
+export function Books({book, setBook}) {
 
     const [books, setBooks] = useState([]);
 
@@ -20,6 +20,7 @@ export function Books({ setToken }) {
                 );
                 const result = await response.json();
                 setBooks(result.books);
+                console.log(result)
             } catch (error) {
                 console.error(error);
             }
@@ -34,7 +35,7 @@ export function Books({ setToken }) {
                 {books.map((book) => {
                     return <li id="bookImg" key={book.id}>
                         <Link to="/books/:bookId">
-                            <img className="coverImage" src={book.coverimage} />
+                            <img className="coverImage" src={book.coverimage} book= {book} setBook = {setBook} />
                         </Link>
                         
                         <br />
