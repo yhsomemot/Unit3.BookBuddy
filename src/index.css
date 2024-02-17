@@ -10,8 +10,6 @@ body {
   margin-right: 10px;
 }
 
-/* Add your own custom styles here */
-
 .coverImage {
   width: 50%;
   height: auto;
@@ -28,3 +26,16 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.loginForm, .registerForm {
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+/* #password, #username {
+  padding: 5%;
+  display: inline-flex;
+} */

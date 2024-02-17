@@ -2,30 +2,30 @@
 
 import { useState } from "react";
 
-export function Register({ token, setToken }) {
+export function Register({ setToken }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
-    async function handleSubmit(evt) {
-        evt.preventDefault();
-        if (
-            username.length === "@"
-        ) {
-            setError(
-                "please enter an email address"
-            )
-            return
-        }
+    async function handleSubmit(e) {
+        e.preventDefault();
+        // if (
+        //     username.length === "@"
+        // ) {
+        //     setError(
+        //         "please enter an email address"
+        //     )
+        //     return
+        // }
         try {
             const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/register", {
                 method: "POST",
                 body: JSON.stringify({ username: username, password: password })
             });
             const result = await response.json();
-            setToken(result.token)
             setSuccessMessage(result.message);
-            console.log(result)
+            setToken(result.token)
         } catch (error) { setError(error.message); }
 
     }
@@ -35,18 +35,22 @@ export function Register({ token, setToken }) {
             <h1>
                 Register
             </h1>
-            {successMessage && <p>{successMessage}</p>}
-            {error && <p>{error}</p>}
+            <div>
+                {successMessage && <p>{successMessage}</p>}
+                {error && <p>{error}</p>}
+            </div>
 
-            <form onSubmit={handleSubmit}>
+
+            <form className="registerForm" onSubmit={handleSubmit}>
+                
                 <label>
                     Username: {""}
-                    <input value={username} onChange={(evt) => { setUsername(evt.target.value) }} />
+                    <input value={username} onChange={(e) => { setUsername(e.target.value) }} />
                 </label>
                 <br />
                 <label>
                     Password: {""}
-                    <input type="password" value={password} onChange={(evt) => { setPassword(evt.target.value) }} />
+                    <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                 </label>
                 <br />
                 <button type="submit">Register</button>

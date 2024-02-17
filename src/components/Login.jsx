@@ -23,33 +23,34 @@ export function Login({ setToken }) {
     }
 
     return (
-        <>
+        <div>
             <h2>Log In</h2>
             {successMessage && <p>{successMessage}</p>}
             {error && <p>{error}</p>}
-            
-            <form onSubmit={handleSubmit}>
-                <label>
+
+            <form className="loginForm" onSubmit={handleSubmit}>
+                <label id="username">
                     Username: {""}
                     <input value={username} onChange={(e) => { setUsername(e.target.value) }} />
                 </label>
                 <br />
-                <label>
-                    Password:{""}
+                <label id="password">
+                    Password: {""}
                     <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                 </label>
                 <br />
+                <button type="submit">Submit</button>
                 <br />
-                <button>Submit</button>
-            </form>
-            
-            <div>
+                 <div>
                 <Link to="/register" className="nav">
-                    Register
+                    Create account
                 </Link>
             </div>
+            </form>
+            
+           
 
-        </>
+        </div>
 
     )
 }
