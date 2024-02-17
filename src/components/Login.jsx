@@ -24,9 +24,10 @@ export function Login({ setToken }) {
 
     return (
         <>
-            <h2>Sign Up</h2>
+            <h2>Log In</h2>
             {successMessage && <p>{successMessage}</p>}
             {error && <p>{error}</p>}
+            
             <form onSubmit={handleSubmit}>
                 <label>
                     Username: {""}

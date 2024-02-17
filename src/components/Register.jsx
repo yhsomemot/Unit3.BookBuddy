@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 
-export function Register() {
-    const [username.setUsername] = useState("");
+export function Register({ token, setToken }) {
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [token, setToken] = useState(null)
 
     async function handleSubmit(evt) {
         evt.preventDefault();
@@ -36,21 +35,20 @@ export function Register() {
             <h1>
                 Register
             </h1>
+            {successMessage && <p>{successMessage}</p>}
+            {error && <p>{error}</p>}
 
             <form onSubmit={handleSubmit}>
-                {/* have a error mesasge where it needs to be an email */}
-                <label htmlFor="firstname">First Name</label>
-                <input type="text" name="firstname" />
-
-                <label htmlFor="lastname">Last Name</label>
-                <input type="text" name="lastname" />
-
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" />
-
-                <label htmlFor="password">Password</label>
-                <input type="text" name="password" />
-
+                <label>
+                    Username: {""}
+                    <input value={username} onChange={(evt) => { setUsername(evt.target.value) }} />
+                </label>
+                <br />
+                <label>
+                    Password: {""}
+                    <input type="password" value={password} onChange={(evt) => { setPassword(evt.target.value) }} />
+                </label>
+                <br />
                 <button type="submit">Register</button>
             </form>
         </>
