@@ -10,18 +10,11 @@ export function Register({ setToken }) {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        // if (
-        //     username.length === "@"
-        // ) {
-        //     setError(
-        //         "please enter an email address"
-        //     )
-        //     return
-        // }
         try {
             const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/register", {
                 method: "POST",
-                body: JSON.stringify({ username: username, password: password })
+                headers: {'Content-Type': "application/json"}, 
+                body: JSON.stringify({ email: username, password: password })
             });
             const result = await response.json();
             setSuccessMessage(result.message);
@@ -42,10 +35,10 @@ export function Register({ setToken }) {
 
 
             <form className="registerForm" onSubmit={handleSubmit}>
-                
+
                 <label>
                     Username: {""}
-                    <input value={username} onChange={(e) => { setUsername(e.target.value) }} />
+                    <input type="email" value={username} onChange={(e) => { setUsername(e.target.value) }} />
                 </label>
                 <br />
                 <label>

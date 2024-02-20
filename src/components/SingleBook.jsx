@@ -5,7 +5,7 @@ You may consider conditionally rendering a 'Checkout' button for logged in users
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 
-export function SingleBook() {
+export function SingleBook( token ) {
     const [book, setBook] = useState({});
     const { bookId } = useParams();
     useEffect(() => {
@@ -29,7 +29,9 @@ export function SingleBook() {
             <h2>{book.title}</h2>
             <h2>{book.author}</h2>
             <p>{book.description}</p>
-            
+            <button>Check Out</button>
+            {/* have a message that tell them to log in?? */}
+            {/* have an onclick to check out but attach it to a token?? */}
         </>
     );
 }

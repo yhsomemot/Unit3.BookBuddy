@@ -11,12 +11,15 @@ export function Account({ token, setToken }) {
 
     async function handleClick() {
         try {
-            const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/me", {
-                method: "GET",
+            const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/:bookId", {
+                method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
-                }
+                },
+                body: JSON.stringify({
+                    available: false
+                })
             });
             const result = await response.json();
             console.log(result, "this is result.data")
@@ -26,12 +29,35 @@ export function Account({ token, setToken }) {
         }
     }
 
+    async function reservesHandleClick() {
+        
+    }
+
+
+    // have a delete api to delete books (return)
+    // have a get to get books that have been check out.
+
     return (
         <>
-            <div>My Token: {token} </div>
+            <div>My Token: {token} </div> //delete this
             <p>Will need a check out and check in. a list of books I have???
                 or is this GET /reservations and DELETE /reservations/:reservatonsId
             </p>
+            
+            <h1>Books in my library</h1>
+            {/* <ul id="books">
+                {books.map((book) => {
+                    return <li id="bookImg" key={book.id}>
+                        <Link to={`/books/${book.id}`}>
+                            <img className="coverImage" src={book.coverimage} />
+                        </Link>
+                        
+                        <br />
+                    </li>;
+                })}
+            </ul> */}
+
+           <button onClick={handleClick}>button</button>
         </>
 
     )
