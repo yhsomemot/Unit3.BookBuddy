@@ -20,7 +20,6 @@ function App() {
           <h1><img id= "logo-image" src={bookLogo} />
           Library App 
           </h1>
-          <p>have navication on the same line as logo??? or have user's name here????</p>
           <Routes>
             <Route path="/" element={<Books />} />
             <Route path="/books" element={<Books />} />

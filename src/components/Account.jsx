@@ -6,7 +6,7 @@ import { useState } from "react";
 
 // GET users/me
 
-export function Account({ token, setToken }) {
+export function Account({ token }) {
     const [successMessage, setSuccessMessage] = useState("")
 
     async function handleClick() {
@@ -22,14 +22,27 @@ export function Account({ token, setToken }) {
                 })
             });
             const result = await response.json();
-            console.log(result, "this is result.data")
             setSuccessMessage(result.message);
         } catch (error) {
             setError(error.message);
         }
     }
 
-    async function reservesHandleClick() {
+    async function userData() {
+        try{
+            const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/me", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ email: username, password: password })
+        });
+        const result = await response.json();
+        // what do i put here?
+        } catch (error) {
+            setError(error.message);
+        }
         
     }
 
