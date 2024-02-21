@@ -17,6 +17,9 @@ export function Navigations({username}) {
             <Link to="/login" className="nav">
                 Login
             </Link>
+            <Link to="/account" className="nav">
+                Account
+            </Link>
             <span>Hello, {username} </span>
         </div>
     );

@@ -7,6 +7,7 @@ export function Register({ setToken }) {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    cosnt [isLoggedIn, setIsLoggedIn] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -19,9 +20,11 @@ export function Register({ setToken }) {
             const result = await response.json();
             setSuccessMessage(result.message);
             setToken(result.token)
+            setIsLoggedIn(true);
         } catch (error) { setError(error.message); }
 
     }
+
 
     return (
         <>

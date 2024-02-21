@@ -2,75 +2,113 @@
 Fetch the account data from the provided API. 
 You may consider conditionally rendering a message for other users that prompts them to log in or create an account.  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-// GET users/me
 
-export function Account({ token }) {
+export function Account({ token, email }) {
     const [successMessage, setSuccessMessage] = useState("")
+    const [book, setBook] = useState([]);
 
-    async function handleClick() {
+
+    async function fetchUserData() {
         try {
-            const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/:bookId", {
-                method: "PATCH",
+            const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/me", {
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify({
-                    available: false
-                })
+                body: JSON.stringify({ email: username, password: password })
             });
             const result = await response.json();
             setSuccessMessage(result.message);
         } catch (error) {
             setError(error.message);
         }
+
     }
 
-    async function userData() {
-        try{
-            const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/me", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({ email: username, password: password })
-        });
-        const result = await response.json();
-        // what do i put here?
-        } catch (error) {
-            setError(error.message);
+    useEffect(() => {
+
+        async function fetchCheckIns(book) {
+            try {
+                const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/reservations", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    },
+                    body: JSON.stringify(book),
+                });
+                const result = await response.json();
+
+                setBook(result.reservation ?? []);
+                return result.book;
+            } catch (error) {
+                console.error(error);
+            }
         }
-        
+        fetchCheckIns();
+    }, []);
+
+
+    async function deleteCheckOuts(bookId) {
+        try {
+            console.log("book has been returned!")
+            const response = await fetch(`https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/reservations/${bookId}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+            });
+            return await response.json();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function handleDeleteCheckOuts(bookId) {
+        try {
+            return await deleteCheckOuts(bookId)
+        } catch (error) {
+            console.error(error)
+        }
+        // deleteCheckOuts(bookId).then(() => {
+        //     deleteCheckOuts().then((book) => {
+        //         deleteCheckOuts(book);
+        //     });
+        // });
     }
 
 
-    // have a delete api to delete books (return)
-    // have a get to get books that have been check out.
 
     return (
         <>
-            <div>My Token: {token} </div> //delete this
-            <p>Will need a check out and check in. a list of books I have???
-                or is this GET /reservations and DELETE /reservations/:reservatonsId
-            </p>
-            
+            {/* <div>My Token: {token} want to have user's login displayed</div> */}
+            {/* <div>Hello <Login />{email} this is not right.</div> */}
             <h1>Books in my library</h1>
-            {/* <ul id="books">
-                {books.map((book) => {
-                    return <li id="bookImg" key={book.id}>
-                        <Link to={`/books/${book.id}`}>
-                            <img className="coverImage" src={book.coverimage} />
-                        </Link>
-                        
-                        <br />
-                    </li>;
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {book.map((book) => {
+                    return (
+                        <tr key={book.id}>
+                            <td>{book.title}</td>
+                            <td>
+                                <button onClick={async () => await deleteCheckOuts(book.id)}>
+                                    Return </button>
+                            </td>
+                        </tr>
+                    )
                 })}
-            </ul> */}
+            </tbody>
 
-           <button onClick={handleClick}>button</button>
+
         </>
 
     )
