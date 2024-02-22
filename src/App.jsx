@@ -14,12 +14,12 @@ function App() {
 
   return (
     <>
+      <h1><img id="logo-image" src={bookLogo} />
+        Library App
+      </h1>
       <div>
-         <Navigations />
+        <Navigations />
         <div>
-          <h1><img id= "logo-image" src={bookLogo} />
-          Library App 
-          </h1>
           <Routes>
             <Route path="/" element={<Books />} />
             <Route path="/books" element={<Books />} />

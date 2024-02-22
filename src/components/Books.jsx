@@ -30,7 +30,7 @@ export function Books() {
 
     return (
         <>
-            <h1>Books</h1>
+            <h1 className="booktitle">Books</h1>
             <ul id="books">
                 {books.map((book) => {
                     return <li id="bookImg" key={book.id}>

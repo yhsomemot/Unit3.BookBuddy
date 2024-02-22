@@ -10,17 +10,17 @@ import { Link } from "react-router-dom";
 export function Navigations({username}) {
 
     return (
-        <div>
-            <Link to="/books" className="nav">
+        <div id="navbar">
+            <Link to="/books" className="books">
                 Books
             </Link>
-            <Link to="/login" className="nav">
+            <Link to="/login" className="login">
                 Login
             </Link>
-            <Link to="/account" className="nav">
+            <Link to="/account" className="account">
                 Account
             </Link>
-            <span>Hello, {username} </span>
+            <span className="hello">Hello, {username} </span>
         </div>
     );
 }
