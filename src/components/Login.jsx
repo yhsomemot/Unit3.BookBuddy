@@ -40,7 +40,7 @@ export function Login({ setToken }) {
 
     return (
         <div>
-            <h2>Log In</h2>
+            <h1 className="logIn">Log In</h1>
             {successMessage && <p>{successMessage}</p>}
             {error && <p>{error}</p>}
 

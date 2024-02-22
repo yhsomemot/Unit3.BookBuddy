@@ -85,16 +85,14 @@ export function Account({ token, email }) {
 
     return (
         <>
-            {/* <div>My Token: {token} want to have user's login displayed</div> */}
-            {/* <div>Hello <Login />{email} this is not right.</div> */}
-            <h1>Books in my library</h1>
-            <thead>
+            <h1 className="account"> My library</h1>
+            <thead className="">
                 <tr>
                     <th>name</th>
                     <th>action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="">
                 {book.map((book) => {
                     return (
                         <tr key={book.id}>

@@ -19,7 +19,7 @@ export function SingleBook({ token }) {
                     `https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/${bookId}`);
                 const result = await response.json();
                 setBook(result.book);
-                
+
             } catch (error) {
                 console.error(error);
             }
@@ -47,15 +47,21 @@ export function SingleBook({ token }) {
     }
 
     return (
-        <>
-            <img className="coverImage" src={book.coverimage} />
-            <h2>{book.title}</h2>
-            <h2>{book.author}</h2>
-            <p>{book.description}</p>
-            <div>{successMessage && <p>{successMessage}</p>}
-                {error && <p>{error}</p>}</div>
-            <button onClick={async () => await handleClick(book.id)}>Check Out</button>
-            
-        </>
+        <div id="singleBookCard">
+            <img className="singleCoverImage" src={book.coverimage} />
+            <div className="singleBookContainer">
+                <h2>{book.title}</h2>
+                <div className="singleBookDescription">
+                    <h2>{book.author}</h2>
+                    <p>{book.description}</p>
+                    <div>{successMessage && <p>{successMessage}</p>}
+                        {error && <p>{error}</p>}</div>
+                    <button onClick={async () => await handleClick(book.id)}>Check Out</button>
+                </div>
+
+            </div>
+
+
+        </div>
     );
 }
