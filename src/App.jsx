@@ -11,6 +11,7 @@ import { Account } from './components/Account'
 
 function App() {
   const [token, setToken] = useState(null);
+  const [username, setUsername] = useState("");
 
   return (
     <>
@@ -18,15 +19,15 @@ function App() {
         Library App
       </h1>
       <div>
-        <Navigations />
+        <Navigations username={username} setUsername={setUsername}/>
         <div>
           <Routes>
             <Route path="/" element={<Books />} />
             <Route path="/books" element={<Books />} />
-            <Route path="/login" element={<Login setToken={setToken} />} />
+            <Route path="/login" element={<Login setToken={setToken} username={username} setUsername={setUsername}/>} />
             <Route path="/register" element={<Register setToken={setToken} />} />
             <Route path="/books/:bookId" element={<SingleBook token={token} />} />
-            <Route path="/account" element={<Account token={token} />} />
+            <Route path="/account" element={<Account token={token} username={username} setUsername={setUsername}/>} />
           </Routes>
         </div>
       </div>

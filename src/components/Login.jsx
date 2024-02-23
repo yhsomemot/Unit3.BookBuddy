@@ -3,9 +3,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export function Login({ setToken }) {
+export function Login({ setToken, username, setUsername }) {
     const navigate = useNavigate();
-    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
@@ -45,6 +44,9 @@ export function Login({ setToken }) {
             {error && <p>{error}</p>}
 
             <form className="loginForm" onSubmit={handleSubmit}>
+                <label >
+                    First Name: {""}
+                </label>
                 <label id="username">
                     Username: {""}
                     <input type="email" value={username} onChange={(e) => { setUsername(e.target.value) }} />

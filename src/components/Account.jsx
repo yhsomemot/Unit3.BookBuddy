@@ -1,11 +1,9 @@
-/* TODO - add your code to create a functional React component that renders account details for a logged in user. 
-Fetch the account data from the provided API. 
-You may consider conditionally rendering a message for other users that prompts them to log in or create an account.  */
+
 
 import { useEffect, useState } from "react";
 
 
-export function Account({ token, email }) {
+export function Account({ token, email, username }) {
     const [successMessage, setSuccessMessage] = useState("")
     const [book, setBook] = useState([]);
 
@@ -68,24 +66,11 @@ export function Account({ token, email }) {
         }
     }
 
-    async function handleDeleteCheckOuts(bookId) {
-        try {
-            return await deleteCheckOuts(bookId)
-        } catch (error) {
-            console.error(error)
-        }
-        // deleteCheckOuts(bookId).then(() => {
-        //     deleteCheckOuts().then((book) => {
-        //         deleteCheckOuts(book);
-        //     });
-        // });
-    }
-
-
 
     return (
         <>
-            <h1 className="account"> My library</h1>
+        <h1>Hello, {username} </h1>
+            <h2 className="account"> My library</h2>
             <thead className="">
                 <tr>
                     <th>name</th>
